@@ -78,3 +78,34 @@ h1 {
     opacity: 0;
     transition: opacity 0.3s;
 }
+
+.keyword.selected {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #357abd;
+}
+
+.control-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.copy-button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.copy-button:hover {
+  background: #357abd;
+}

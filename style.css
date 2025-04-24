@@ -109,3 +109,11 @@ h1 {
 .copy-button:hover {
   background: #357abd;
 }
+
+@media (max-width: 768px) {
+  .control-panel {
+    width: 90%;
+    bottom: 10px;
+    right: 5%;
+  }
+}

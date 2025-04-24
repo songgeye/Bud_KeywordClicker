@@ -1,2 +1,2 @@
-# KeywordClicker
+# Bud_KeywordClicker
 キーワードをクリックしてコピーする

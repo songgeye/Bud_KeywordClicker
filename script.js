@@ -1,70 +1,65 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 単一キーワードのコピー機能
-    document.querySelectorAll('[data-copy]').forEach(function(element) {
-        element.addEventListener('click', function() {
-            const textToCopy = this.textContent.trim();
-            copyToClipboard(textToCopy);
-            showFeedback(`「${textToCopy}」をコピーしました`);
-        });
-    });
+let selectedKeywords = new Set();
 
-    // キーワードグループのコピー機能
-    document.querySelectorAll('.keyword-group').forEach(function(group) {
-        group.addEventListener('dblclick', function() {
-            const keywordsInGroup = Array.from(this.querySelectorAll('.keyword'))
-                .map(el => el.textContent.trim())
-                .join(' ');
-            copyToClipboard(keywordsInGroup);
-            showFeedback(`グループ内のキーワードをコピーしました`);
-        });
-    });
-
-    // カンマ付きキーワード行のコピー機能
-    document.querySelectorAll('[data-copy-row]').forEach(function(row) {
-        row.addEventListener('dblclick', function() {
-            const textToCopy = this.textContent.trim();
-            copyToClipboard(textToCopy);
-            showFeedback(`カンマ付きキーワードをコピーしました`);
-        });
-    });
-
-    // カンマ付きキーワードの個別コピー
-    document.querySelectorAll('.keyword-comma').forEach(function(element) {
-        element.addEventListener('click', function() {
-            const keyword = this.textContent.trim();
-            const hasComma = this.nextElementSibling && this.nextElementSibling.classList.contains('comma');
-            const textToCopy = hasComma ? keyword + ',' : keyword;
-            copyToClipboard(textToCopy);
-            showFeedback(`「${textToCopy}」をコピーしました`);
-        });
-    });
-
-    // クリップボードにコピーする関数
-    function copyToClipboard(text) {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-    }
-
-    // フィードバックを表示する関数
-    function showFeedback(message) {
-        let feedback = document.querySelector('.feedback');
-        if (!feedback) {
-            feedback = document.createElement('div');
-            feedback.classList.add('feedback');
-            document.body.appendChild(feedback);
-        }
-        
-        feedback.textContent = message;
-        feedback.style.opacity = '1';
-        
-        setTimeout(function() {
-            feedback.style.opacity = '0';
-        }, 2000);
-    }
+// 単一キーワード選択機能
+document.querySelectorAll('[data-copy]').forEach(element => {
+  element.addEventListener('click', function(e) {
+    if (e.detail >= 2) return; // ダブルクリック防止
+    
+    const keyword = this.textContent.trim();
+    toggleSelection(keyword, this);
+  });
 });
+
+// 一括コピー機能
+document.getElementById('bulkCopy').addEventListener('click', () => {
+  const keywords = Array.from(selectedKeywords).join(' ');
+  if (keywords) {
+    copyToClipboard(keywords);
+    showFeedback(`${selectedKeywords.size}個のキーワードをコピーしました`);
+    clearSelection();
+  }
+});
+
+function toggleSelection(keyword, element) {
+  if (selectedKeywords.has(keyword)) {
+    selectedKeywords.delete(keyword);
+    element.classList.remove('selected');
+  } else {
+    selectedKeywords.add(keyword);
+    element.classList.add('selected');
+  }
+  updateCounter();
+}
+
+function updateCounter() {
+  document.getElementById('selectedCount').textContent = selectedKeywords.size;
+}
+
+function clearSelection() {
+  selectedKeywords.clear();
+  document.querySelectorAll('.keyword.selected').forEach(el => 
+    el.classList.remove('selected')
+  );
+  updateCounter();
+}
+
+// 仮想DOMによる効率的なレンダリング
+const observer = new MutationObserver(() => {
+  document.querySelectorAll('[data-copy]').forEach(attachHandler);
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
+// AIレコメンド機能の擬似コード
+async function recommendKeywords() {
+  const usagePattern = analyzeUserBehavior();
+  const response = await fetch('/api/recommend', {
+    method: 'POST',
+    body: JSON.stringify(usagePattern)
+  });
+  const recommendations = await response.json();
+  updateUI(recommendations);
+}

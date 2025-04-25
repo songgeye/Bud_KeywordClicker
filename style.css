@@ -87,8 +87,8 @@ h1 {
 
 .control-panel {
   position: fixed;
-  bottom: 5%;
-  right: 5%;
+  bottom: 1%;
+  right: 1%;
   background: white;
   padding: 15px;
   border-radius: 8px;

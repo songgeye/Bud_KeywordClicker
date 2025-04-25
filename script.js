@@ -7,13 +7,22 @@ const feedback = document.getElementById('feedback');
 // キーワードの選択イベント
 keywordEls.forEach(el => {
   el.addEventListener('click', () => {
-    const word = el.textContent.trim();
-    if (el.classList.contains('selected')) {
-      el.classList.remove('selected');
+    let word = el.textContent.trim();
+    
+    // keyword-commaの場合、カンマを含める
+    if (el.classList.contains('keyword-comma')) {
+      const nextSibling = el.nextElementSibling;
+      if (nextSibling && nextSibling.classList.contains('comma')) {
+        word += nextSibling.textContent;  // カンマを結合
+      }
+    }
+    
+    if (selected.has(word)) {
       selected.delete(word);
+      el.classList.remove('selected');
     } else {
-      el.classList.add('selected');
       selected.add(word);
+      el.classList.add('selected');
     }
     selectedCount.textContent = selected.size;
   });

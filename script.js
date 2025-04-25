@@ -2,12 +2,13 @@ let selectedKeywords = new Set();
 
 // 単一キーワード選択機能
 document.querySelectorAll('[data-copy]').forEach(element => {
-  element.addEventListener('click', function(e) {
-    if (e.detail >= 2) return; // ダブルクリック防止
-    
-    const keyword = this.textContent.trim();
-    toggleSelection(keyword, this);
-  });
+  // イベントハンドラー修正
+element.addEventListener('click', function(e) {
+  e.stopPropagation(); // 追加
+  if (e.detail >= 2) return;
+  
+  const keyword = this.textContent.trim();
+  toggleSelection(keyword, this);
 });
 
 // 一括コピー機能
@@ -52,14 +53,6 @@ observer.observe(document.body, {
   childList: true,
   subtree: true
 });
-
-// 権限リクエストを追加
-navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
-  if (result.state === 'granted' || result.state === 'prompt') {
-    console.log('クリップボード書き込み権限あり');
-  }
-});
-
 
 // AIレコメンド機能の擬似コード
 async function recommendKeywords() {

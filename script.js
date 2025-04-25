@@ -38,7 +38,7 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
   // スペースを削除してから結合
   const text = Array.from(selected)
     .map(item => item.trim())  // 各要素前後の空白を削除
-    .join(' ');
+    .join('');
   
   try {
     await navigator.clipboard.writeText(text);

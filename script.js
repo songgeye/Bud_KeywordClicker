@@ -54,16 +54,10 @@ function showFeedback(msg, isError = false) {
     feedback.style.background = isError ? '#c00' : '#333';
     feedback.classList.add('show');
 
-    // コントロールパネルの高さを一時的に変更
-    const controlPanel = document.querySelector('.control-panel');
-    const originalHeight = controlPanel.offsetHeight;
-    controlPanel.style.height = `${originalHeight + 20}px`; // 20px分高さを増やす
-
     setTimeout(() => {
         feedback.classList.remove('show');
-
-        // 元の高さに戻す
-        controlPanel.style.height = `${originalHeight}px`;
+        // フェードアウト後に#feedbackの右側の余白を0に戻す
+        feedback.style.marginRight = '-15px';
     }, 1800);
 }
 

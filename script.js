@@ -9,6 +9,7 @@ element.addEventListener('click', function(e) {
   
   const keyword = this.textContent.trim();
   toggleSelection(keyword, this);
+  });
 });
 
 // 一括コピー機能

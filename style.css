@@ -74,13 +74,15 @@ h1 {
 }
 
 .comma-row {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   display: flex;
   flex-wrap: wrap;
 }
 
 .comma {
   margin-right: 2px;
+  vertical-align: bottom; /* カンマを下寄せにする */
+  line-height: 2em;
 }
 
 .control-panel {

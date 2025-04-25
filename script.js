@@ -30,34 +30,41 @@ keywordEls.forEach(el => {
 
 // コピーボタンのイベント
 document.getElementById('bulkCopy').addEventListener('click', async () => {
-  if (selected.size === 0) {
-    showFeedback('キーワードを選択してください', true);
-    return;
-  }
-  
-  // スペースを削除してから結合
-  const text = Array.from(selected)
-    .map(item => item.trim())  // 各要素前後の空白を削除
-    .join('');
-  
-  try {
-    await navigator.clipboard.writeText(text);
-    showFeedback('コピーしました！');
-  } catch (e) {
-    console.error('コピーエラー:', e);
-    fallbackCopy(text);
-  }
+    if (selected.size === 0) {
+        showFeedback('キーワードを選択してください', true);
+        return;
+    }
+
+    const text = Array.from(selected)
+        .map(item => item.trim())
+        .join(' ');
+
+    try {
+        await navigator.clipboard.writeText(text);
+        showFeedback('コピーしました！');
+    } catch (e) {
+        console.error('コピーエラー:', e);
+        fallbackCopy(text);
+    }
 });
 
 // フィードバックの表示
 function showFeedback(msg, isError = false) {
-  feedback.textContent = msg;
-  feedback.style.background = isError ? '#c00' : '#333';
-  feedback.classList.add('show');
-  
-  setTimeout(() => {
-    feedback.classList.remove('show');
-  }, 1800);
+    feedback.textContent = msg;
+    feedback.style.background = isError ? '#c00' : '#333';
+    feedback.classList.add('show');
+
+    // コントロールパネルの高さを一時的に変更
+    const controlPanel = document.querySelector('.control-panel');
+    const originalHeight = controlPanel.offsetHeight;
+    controlPanel.style.height = `${originalHeight + 20}px`; // 20px分高さを増やす
+
+    setTimeout(() => {
+        feedback.classList.remove('show');
+
+        // 元の高さに戻す
+        controlPanel.style.height = `${originalHeight}px`;
+    }, 1800);
 }
 
 // フォールバックコピー処理（navigator.clipboardが使えない場合）

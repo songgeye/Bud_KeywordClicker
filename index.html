@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>クリックでコピーできるキーワードツール</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>キーワード一括コピー</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>カテゴリ一覧</h1>
-        <div class="keyword-section">
-            <div class="keyword-group" data-group="宿泊施設">
+  <div class="container">
+    <div class="panel">
+      <span>選択中: <span id="selectedCount">0</span>件</span>
+      <button id="bulkCopy">選択項目をコピー</button>
+      <span id="feedback"></span>
+    </div>
+    <div class="keywords" id="keywords">
+      <!-- キーワード -->
+      <div class="keyword-group" data-group="宿泊施設">
                 <span class="keyword" data-copy>宿泊施設</span>
                 <span class="keyword" data-copy>外観</span>
                 <span class="keyword" data-copy>客室</span>
@@ -98,48 +102,34 @@
                 <span class="keyword" data-copy>タイムラプス</span>
                 <span class="keyword" data-copy>動画テンプレート</span>
             </div>
-        </div>
-        
-        <h1>カテゴリ一覧(カンマ付)</h1>
-        <div class="keyword-section comma">
-            <div class="keyword-row" data-copy-row>
-                <span class="keyword-comma" data-copy>外観</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>客室</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>露天風呂</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>大浴場</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>料理</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>街並み</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>町並み</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>世界遺産</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>夕景</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>夜景</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>車体</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>船体</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>機体</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>春</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>桜</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>夏</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>秋</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>紅葉</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>冬</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>雪</span><span class="comma">,</span>
+      <!-- ...カンマ付キーワード... -->
+            <h1>カテゴリ一覧(カンマ付)</h1>
+            <div class="keyword-section comma">
+                <div class="keyword-row" data-copy-row>
+                    <span class="keyword-comma" data-copy>外観</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>客室</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>露天風呂</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>大浴場</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>料理</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>街並み</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>町並み</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>世界遺産</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>夕景</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>夜景</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>車体</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>船体</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>機体</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>春</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>桜</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>夏</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>秋</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>紅葉</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>冬</span><span class="comma">,</span>
+                    <span class="keyword-comma" data-copy>雪</span><span class="comma">,</span>
+                </div>
             </div>
-        </div>
-        <div class="control-panel">
-          <div class="selection-info">
-            選択中: <span id="selectedCount">0</span>件
-          </div>
-          <button id="bulkCopy" class="copy-button">
-            選択項目をコピー
-          </button>
-        </div>
-        <button id="bulkCopy" 
-            aria-label="選択項目をコピー"
-            role="button"
-            tabindex="0">
-          選択項目をコピー
-        </button>
     </div>
-    <script src="script.js"></script>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

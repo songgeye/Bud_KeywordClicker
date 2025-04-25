@@ -53,6 +53,14 @@ observer.observe(document.body, {
   subtree: true
 });
 
+// 権限リクエストを追加
+navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
+  if (result.state === 'granted' || result.state === 'prompt') {
+    console.log('クリップボード書き込み権限あり');
+  }
+});
+
+
 // AIレコメンド機能の擬似コード
 async function recommendKeywords() {
   const usagePattern = analyzeUserBehavior();

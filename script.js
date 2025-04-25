@@ -1,36 +1,39 @@
-let selectedKeywords = new Set();
+const selected = new Set();
+const keywordEls = document.querySelectorAll('.keyword');
+const selectedCount = document.getElementById('selectedCount');
+const feedback = document.getElementById('feedback');
 
-// 強化版コピー関数
-async function copyToClipboard(text) {
-  try {
-    if (navigator.clipboard) {
-      await navigator.clipboard.writeText(text);
-      return true;
+keywordEls.forEach(el => {
+  el.addEventListener('click', () => {
+    const word = el.textContent.trim();
+    if (el.classList.contains('selected')) {
+      el.classList.remove('selected');
+      selected.delete(word);
     } else {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      return true;
+      el.classList.add('selected');
+      selected.add(word);
     }
-  } catch (err) {
-    console.error('コピー失敗:', err);
-    return false;
-  }
-}
+    selectedCount.textContent = selected.size;
+  });
+});
 
-// 改良版バルクコピー処理
 document.getElementById('bulkCopy').addEventListener('click', async () => {
-  const keywords = Array.from(selectedKeywords).join(' ');
-  if (!keywords) return;
-  
-  const success = await copyToClipboard(keywords);
-  if (success) {
-    showFeedback(`${selectedKeywords.size}個のキーワードをコピー成功`);
-    clearSelection();
-  } else {
+  if (selected.size === 0) {
+    showFeedback('キーワードを選択してください', true);
+    return;
+  }
+  const text = Array.from(selected).join(' ');
+  try {
+    await navigator.clipboard.writeText(text);
+    showFeedback('コピーしました！');
+  } catch (e) {
     showFeedback('コピーに失敗しました', true);
   }
 });
+
+function showFeedback(msg, isError) {
+  feedback.textContent = msg;
+  feedback.style.background = isError ? '#c00' : '#333';
+  feedback.classList.add('show');
+  setTimeout(() => feedback.classList.remove('show'), 1800);
+}

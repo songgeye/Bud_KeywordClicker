@@ -52,13 +52,18 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
 function showFeedback(msg, isError = false) {
     feedback.textContent = msg;
     feedback.style.background = isError ? '#c00' : '#333';
-    feedback.classList.add('show');
+    feedback.style.opacity = '1';
 
+    // 2.5秒後に透明化
     setTimeout(() => {
-        feedback.classList.remove('show');
-        // フェードアウト後に#feedbackの右側の余白を0に戻す
-        feedback.style.marginRight = '-15px';
-    }, 1800);
+        feedback.style.opacity = '0';
+
+        // 透明化後、さらに0.5秒後にテキストやスタイルをリセット
+        setTimeout(() => {
+            feedback.textContent = '';
+            feedback.style.background = '#333'; // デフォルト色に戻す（必要なら）
+        }, 500);
+    }, 2500);
 }
 
 // フォールバックコピー処理（navigator.clipboardが使えない場合）

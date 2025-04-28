@@ -39,6 +39,9 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
         .map(item => item.trim())
         .join(' ');
 
+    // 「 ,」→「,」に置換してカンマ前のスペースを除去
+    text = text.replace(/ \,/g, ',');
+
     try {
         await navigator.clipboard.writeText(text);
         showFeedback('コピーしました！');

@@ -35,7 +35,7 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
         return;
     }
 
-    const text = Array.from(selected)
+    let text = Array.from(selected)
         .map(item => item.trim())
         .join(' ');
 

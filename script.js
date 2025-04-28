@@ -52,19 +52,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // フィードバックを表示する関数
-    function showFeedback(message) {
-        let feedback = document.querySelector('.feedback');
-        if (!feedback) {
-            feedback = document.createElement('div');
-            feedback.classList.add('feedback');
-            document.body.appendChild(feedback);
-        }
-        
-        feedback.textContent = message;
+    function showFeedback(msg, isError = false) {
+        feedback.textContent = msg;
+        feedback.style.background = isError ? '#c00' : '#333';
         feedback.style.opacity = '1';
-        
-        setTimeout(function() {
+    
+        // 2.5秒後に透明化
+        setTimeout(() => {
             feedback.style.opacity = '0';
-        }, 2000);
-    }
+    
+            // 透明化後、さらに0.5秒後にテキストやスタイルをリセット
+            setTimeout(() => {
+                feedback.textContent = '';
+                feedback.style.background = '#333'; // デフォルト色に戻す（必要なら）
+            }, 500);
+        }, 2500);
+　　　}
 });

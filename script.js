@@ -1,70 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 単一キーワードのコピー機能
-    document.querySelectorAll('[data-copy]').forEach(function(element) {
-        element.addEventListener('click', function() {
-            const textToCopy = this.textContent.trim();
-            copyToClipboard(textToCopy);
-            showFeedback(`「${textToCopy}」をコピーしました`);
-        });
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  // コピー対象となるキーワード群を含むコンテナ
+  const commaSection = document.querySelector('.comma-section');
+  // コピー実行ボタン（HTML 側で <button class="copy-btn">などを想定）
+  const copyBtn = document.querySelector('.copy-btn');
 
-    // キーワードグループのコピー機能
-    document.querySelectorAll('.keyword-group').forEach(function(group) {
-        group.addEventListener('dblclick', function() {
-            const keywordsInGroup = Array.from(this.querySelectorAll('.keyword'))
-                .map(el => el.textContent.trim())
-                .join(' ');
-            copyToClipboard(keywordsInGroup);
-            showFeedback(`グループ内のキーワードをコピーしました`);
-        });
-    });
+  // 1. キーワードクリックで選択・解除
+  commaSection.addEventListener('click', (e) => {
+    // .keyword-comma 要素以外は無視
+    const kw = e.target.closest('.keyword-comma');
+    if (!kw) return;
+    // 選択状態をクラスでトグル（CSS でハイライト可能）
+    kw.classList.toggle('selected');
+  });
 
-    // カンマ付きキーワード行のコピー機能
-    document.querySelectorAll('[data-copy-row]').forEach(function(row) {
-        row.addEventListener('dblclick', function() {
-            const textToCopy = this.textContent.trim();
-            copyToClipboard(textToCopy);
-            showFeedback(`カンマ付きキーワードをコピーしました`);
-        });
-    });
+  // 2. コピー実行時の処理
+  copyBtn.addEventListener('click', () => {
+    // .comma-section 内の選ばれた .keyword-comma だけ取得
+    const selected = commaSection.querySelectorAll('.keyword-comma.selected');
 
-    // カンマ付きキーワードの個別コピー
-    document.querySelectorAll('.keyword-comma').forEach(function(element) {
-        element.addEventListener('click', function() {
-            const keyword = this.textContent.trim();
-            const hasComma = this.nextElementSibling && this.nextElementSibling.classList.contains('comma');
-            const textToCopy = hasComma ? keyword + ',' : keyword;
-            copyToClipboard(textToCopy);
-            showFeedback(`「${textToCopy}」をコピーしました`);
-        });
-    });
+    // テキストを抽出し、すべての空白を削除 → カンマで結合
+    const result = Array.from(selected)
+      .map(el => el.textContent.replace(/\s+/g, ''))
+      .join(',');
 
-    // クリップボードにコピーする関数
-    function copyToClipboard(text) {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-    }
-
-    // フィードバックを表示する関数
-    function showFeedback(message) {
-        let feedback = document.querySelector('.feedback');
-        if (!feedback) {
-            feedback = document.createElement('div');
-            feedback.classList.add('feedback');
-            document.body.appendChild(feedback);
-        }
-        
-        feedback.textContent = message;
-        feedback.style.opacity = '1';
-        
-        setTimeout(function() {
-            feedback.style.opacity = '0';
-        }, 2000);
-    }
+    // クリップボードに書き出し
+    navigator.clipboard.writeText(result)
+      .then(() => {
+        // 必要に応じてフィードバック表示
+        console.log('Copied to clipboard:', result);
+      })
+      .catch(err => {
+        console.error('コピーに失敗しました:', err);
+      });
+  });
 });

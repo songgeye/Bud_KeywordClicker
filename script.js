@@ -40,7 +40,7 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
         .join(' ');
 
     // 「 ,」→「,」に置換してカンマ前のスペースを除去
-    // text = text.replace(/ \,/g, ',');
+    text = text.replace(/ \,/g, ',');
 
     try {
         await navigator.clipboard.writeText(text);

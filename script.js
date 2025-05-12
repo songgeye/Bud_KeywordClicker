@@ -52,7 +52,10 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
             if (el.classList.contains('keyword-comma')) {
                 // カンマ区切りキーワード (.keyword-comma) の場合
                 let baseText = el.textContent.trim();
-                baseText = baseText.replace(/\s+/g, ''); // テキスト本体から全てのスペースを削除
+                // テキスト本体から全てのスペースを削除 (Unicodeの様々な空白文字に対応する場合)
+                // 通常の \s で問題ないはずですが、念のため広範囲の空白文字に対応させる場合は以下のようにします。
+                // baseText = baseText.replace(/[\s\u00A0]+/g, ''); 
+                baseText = baseText.replace(/\s+/g, ''); // 通常はこちらで十分です
                 processedText = baseText;
                 const nextSibling = el.nextElementSibling;
                 if (nextSibling && nextSibling.classList.contains('comma')) {
@@ -88,9 +91,6 @@ function showFeedback(msg, isError = false) {
 
     setTimeout(() => {
         feedback.classList.remove('show');
-        // トランジション完了後にテキストをクリアするなら、CSSのtransitionendイベントを使うか、
-        // opacityのトランジション時間に合わせてさらにsetTimeoutを設定
-        // ここでは簡略化のため、remove('show')で非表示にする
     }, 2500);
 }
 

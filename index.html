@@ -1,131 +1,188 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>クリックでコピーできるキーワードツール</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>クリックでコピーできるキーワードツール</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>カテゴリ一覧</h1>
-        <div class="keyword-section">
-            <div class="keyword-group" data-group="宿泊施設">
-                <span class="keyword" data-copy>宿泊施設</span>
-                <span class="keyword" data-copy>外観</span>
-                <span class="keyword" data-copy>客室</span>
-                <span class="keyword" data-copy>露天風呂</span>
-                <span class="keyword" data-copy>大浴場</span>
-                <span class="keyword" data-copy>間取り図</span>
-                <span class="keyword" data-copy>見取り図</span>
-            </div>
-            <div class="keyword-group" data-group="食べ物">
-                <span class="keyword" data-copy>食べ物</span>
-                <span class="keyword" data-copy>料理</span>
-            </div>   
-            <div class="keyword-group" data-group="風景">
-                <span class="keyword" data-copy>風景</span>
-                <span class="keyword" data-copy>建物</span>
-                <span class="keyword" data-copy>街並み</span>
-                <span class="keyword" data-copy>町並み</span>
-                <span class="keyword" data-copy>世界遺産</span>
-                <span class="keyword" data-copy>夕景</span>
-                <span class="keyword" data-copy>夜景</span>
-                <span class="keyword" data-copy>動物</span>
-                <span class="keyword" data-copy>植物</span>
-                <span class="keyword" data-copy>物品</span>
-            </div>
-            <div class="keyword-group" data-group="イベント">
-                <span class="keyword" data-copy>イベント</span>
-                <span class="keyword" data-copy>祭り</span>
-                <span class="keyword" data-copy>花火</span>
-                <span class="keyword" data-copy>クリスマス</span>
-                <span class="keyword" data-copy>正月</span>
-                <span class="keyword" data-copy>ウェディング</span>
-            </div>
-            <div class="keyword-group" data-group="乗物">
-                <span class="keyword" data-copy>乗物</span>
-                <span class="keyword" data-copy>車体</span>
-                <span class="keyword" data-copy>船体</span>
-                <span class="keyword" data-copy>機体</span>
-            </div>
-            <div class="keyword-group" data-group="人物">
-                <span class="keyword" data-copy>人物</span>
-                <span class="keyword" data-copy>女</span>
-                <span class="keyword" data-copy>男</span>
-                <span class="keyword" data-copy>家族</span>
-                <span class="keyword" data-copy>似顔絵</span>
-                <span class="keyword" data-copy>シニア</span>
-                <span class="keyword" data-copy>子供</span>
-            </div>
-            <div class="keyword-group" data-group="キャラクター">
-                <span class="keyword" data-copy>キャラクター</span>
-                <span class="keyword" data-copy>ココロちゃん</span>
-                <span class="keyword" data-copy>わくわく4</span>
-                <span class="keyword" data-copy>わくわく5 </span>
-            </div>
-            <div class="keyword-group" data-group="絵・図">
-                <span class="keyword" data-copy>水彩</span>
-                <span class="keyword" data-copy>ポップ</span>
-                <span class="keyword" data-copy>ベタ</span>
-                <span class="keyword" data-copy>アイコン</span>
-                <span class="keyword" data-copy>浮世絵</span>
-                <span class="keyword" data-copy>俯瞰図</span>
-                <span class="keyword" data-copy>女性向け</span>
-                <span class="keyword" data-copy>風景画</span>
-                <span class="keyword" data-copy>表紙</span>
-                <span class="keyword" data-copy>地図</span>
-            </div>
-            <div class="keyword-group" data-group="季節">
-                <span class="keyword" data-copy>春</span>
-                <span class="keyword" data-copy>桜</span>
-                <span class="keyword" data-copy>夏</span>
-                <span class="keyword" data-copy>秋</span>
-                <span class="keyword" data-copy>紅葉</span>
-                <span class="keyword" data-copy>冬</span>
-                <span class="keyword" data-copy>雪</span>
-            </div>
-            <div class="keyword-group" data-group="国内・海外">
-                <span class="keyword" data-copy>国内</span>
-                <span class="keyword" data-copy>海外</span>
-            </div>
-            <div class="keyword-group" data-group="撮影">
-                <span class="keyword" data-copy>4K</span>
-                <span class="keyword" data-copy>HD</span>
-                <span class="keyword" data-copy>地上撮影</span>
-                <span class="keyword" data-copy>空撮</span>
-                <span class="keyword" data-copy>360°/VR</span>
-                <span class="keyword" data-copy>タイムラプス</span>
-                <span class="keyword" data-copy>動画テンプレート</span>
-            </div>
+  <div class="container">
+    <h1>カテゴリ一覧</h1>
+    
+    <div class="category-section">
+      <div class="category-item">
+        <div class="category-label">宿泊施設</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">宿泊施設</span>
+          <span class="keyword">外観</span>
+          <span class="keyword">客室</span>
+          <span class="keyword">露天風呂</span>
+          <span class="keyword">大浴場</span>
+          <span class="keyword">間取り図</span>
+          <span class="keyword">見取り図</span> 
         </div>
-        
-        <h1>カテゴリ一覧(カンマ付)</h1>
-        <div class="keyword-section comma">
-            <div class="keyword-row" data-copy-row>
-                <span class="keyword-comma" data-copy>外観</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>客室</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>露天風呂</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>大浴場</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>料理</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>街並み</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>町並み</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>世界遺産</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>夕景</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>夜景</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>車体</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>船体</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>機体</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>春</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>桜</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>夏</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>秋</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>紅葉</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>冬</span><span class="comma">,</span>
-                <span class="keyword-comma" data-copy>雪</span><span class="comma">,</span>
-            </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">食べ物</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">食べ物</span>
+          <span class="keyword">料理</span>
         </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">風景</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">風景</span>
+          <span class="keyword">建物</span>
+          <span class="keyword">街並み</span>
+          <span class="keyword">町並み</span>
+          <span class="keyword">世界遺産</span>
+          <span class="keyword">夕景</span>
+          <span class="keyword">夜景</span>
+          <span class="keyword">動物</span>
+          <span class="keyword">植物</span>
+          <span class="keyword">物品</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">イベント</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">イベント</span>
+          <span class="keyword">祭り</span>
+          <span class="keyword">花火</span>
+          <span class="keyword">クリスマス</span>
+          <span class="keyword">正月</span>
+          <span class="keyword">ウェディング</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">乗物</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">乗物</span>
+          <span class="keyword">車体</span>
+          <span class="keyword">船体</span>
+          <span class="keyword">機体</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">人物</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">人物</span>
+          <span class="keyword">女</span>
+          <span class="keyword">男</span>
+          <span class="keyword">家族</span>
+          <span class="keyword">似顔絵</span>
+          <span class="keyword">シニア</span>
+          <span class="keyword">子供</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">キャラクター</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">キャラクター</span>
+          <span class="keyword">ココロちゃん</span>
+          <span class="keyword">わくわく4</span>
+          <span class="keyword">わくわく5</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">絵・図</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">水彩</span>
+          <span class="keyword">ポップ</span>
+          <span class="keyword">ベタ</span>
+          <span class="keyword">アイコン</span>
+          <span class="keyword">浮世絵</span>
+          <span class="keyword">俯瞰図</span>
+          <span class="keyword">女性向け</span>
+          <span class="keyword">風景画</span>
+          <span class="keyword">表紙</span>
+          <span class="keyword">地図</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">季節</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">春</span>
+          <span class="keyword">桜</span>
+          <span class="keyword">夏</span>
+          <span class="keyword">秋</span>
+          <span class="keyword">紅葉</span>
+          <span class="keyword">冬</span>
+          <span class="keyword">雪</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">国内・海外</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">国内</span>
+          <span class="keyword">海外</span>
+        </div>
+      </div>
+      
+      <div class="category-item">
+        <div class="category-label">撮影</div>
+        <div class="keywords-wrapper">
+          <span class="keyword">4K</span>
+          <span class="keyword">HD</span>
+          <span class="keyword">地上撮影</span>
+          <span class="keyword">空撮</span>
+          <span class="keyword">360°/VR</span>
+          <span class="keyword">タイムラプス</span>
+          <span class="keyword">動画テンプレート</span>
+        </div>
+      </div>
     </div>
-    <script src="script.js"></script>
+    
+    <h1>カテゴリ一覧(カンマ付)</h1>
+    <div class="comma-section">
+      <div class="comma-row">
+        <span class="keyword-comma">外観</span><span class="comma">,</span>
+        <span class="keyword-comma">客室</span><span class="comma">,</span>
+        <span class="keyword-comma">露天風呂</span><span class="comma">,</span>
+        <span class="keyword-comma">大浴場</span><span class="comma">,</span>
+      </div>
+      <div class="comma-row">
+        <span class="keyword-comma">料理</span><span class="comma">,</span>
+      </div>
+      <div class="comma-row">
+        <span class="keyword-comma">街並み</span><span class="comma">,</span>
+        <span class="keyword-comma">町並み</span><span class="comma">,</span>
+        <span class="keyword-comma">世界遺産</span><span class="comma">,</span>
+        <span class="keyword-comma">夕景</span><span class="comma">,</span>
+        <span class="keyword-comma">夜景</span><span class="comma">,</span>
+      </div>
+      <div class="comma-row">
+        <span class="keyword-comma">車体</span><span class="comma">,</span>
+        <span class="keyword-comma">船体</span><span class="comma">,</span>
+        <span class="keyword-comma">機体</span><span class="comma">,</span>
+      </div>
+      <div class="comma-row">
+        <span class="keyword-comma">春</span><span class="comma">,</span>
+        <span class="keyword-comma">桜</span><span class="comma">,</span>
+        <span class="keyword-comma">夏</span><span class="comma">,</span>
+        <span class="keyword-comma">秋</span><span class="comma">,</span>
+        <span class="keyword-comma">紅葉</span><span class="comma">,</span>
+        <span class="keyword-comma">冬</span><span class="comma">,</span>
+        <span class="keyword-comma">雪</span><span class="comma">,</span>
+      </div>
+    </div>
+    
+    <div class="control-panel">
+      <div class="selection-info">選択中: <span id="selectedCount">0</span>件</div>
+      <button id="bulkCopy" class="copy-button">選択項目をコピー</button>
+      <div id="feedback"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

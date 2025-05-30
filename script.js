@@ -13,7 +13,8 @@ keywordEls.forEach(el => {
     if (el.classList.contains('keyword-comma')) {
       const nextSibling = el.nextElementSibling;
       if (nextSibling && nextSibling.classList.contains('comma')) {
-        word += nextSibling.textContent.trim();  // カンマを結合 (カンマ部分もtrim)
+        // カンマを結合 (カンマ自体にスペースは通常ないが、念のためtrim)
+        word += nextSibling.textContent.trim(); 
       }
     }
     
@@ -35,51 +36,43 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
         return;
     }
 
-    let textParts = [];
-    // DOMの順序で選択されたキーワードを処理
-    keywordEls.forEach(el => {
-        // selectedセットに格納されている形式の文字列を生成
-        let wordInSet = el.textContent.trim();
-        if (el.classList.contains('keyword-comma')) {
-            const nextSibling = el.nextElementSibling;
-            if (nextSibling && nextSibling.classList.contains('comma')) {
-                wordInSet += nextSibling.textContent.trim(); 
-            }
-        }
+    const spaceKeywords = [];
+    const commaKeywords = [];
 
-        if (selected.has(wordInSet)) {
-            let processedText;
-            if (el.classList.contains('keyword-comma')) {
-                // カンマ区切りキーワード (.keyword-comma) の場合
-                let baseText = el.textContent.trim();
-                // テキスト本体から全てのスペースを削除 (Unicodeの様々な空白文字に対応する場合)
-                // 通常の \s で問題ないはずですが、念のため広範囲の空白文字に対応させる場合は以下のようにします。
-                // baseText = baseText.replace(/[\s\u00A0]+/g, ''); 
-                baseText = baseText.replace(/\s+/g, ''); // 通常はこちらで十分です
-                processedText = baseText;
-                const nextSibling = el.nextElementSibling;
-                if (nextSibling && nextSibling.classList.contains('comma')) {
-                    processedText += nextSibling.textContent.trim(); // カンマを追加
-                }
-            } else {
-                // カテゴリキーワード (.keyword) の場合
-                processedText = el.textContent.trim(); // そのまま使用
-            }
-            textParts.push(processedText);
+    // 選択されたキーワードを分類
+    selected.forEach(item => {
+        // '.keyword-comma' からのアイテムは、処理時に末尾にカンマが結合されている (例: "単語,")
+        // '.keyword' からのアイテムはカンマなし (例: "単語")
+        if (item.endsWith(',')) {
+            commaKeywords.push(item);
+        } else {
+            spaceKeywords.push(item);
         }
     });
 
-    let text = textParts.join(' '); // 各パーツをスペースで結合
+    let textToCopy = '';
+    const spacePart = spaceKeywords.join(' '); // スペース区切り部分
+    // commaKeywords の各要素は "単語," の形なので、単純に連結すれば "単語,単語,単語," となる
+    const commaPart = commaKeywords.join('');   // カンマ区切り部分 (スペースなし)
 
-    // 最終的に「スペース + カンマ」を「カンマ」に置換
-    text = text.replace(/ \,/g, ',');
+    if (spacePart && commaPart) {
+        // 両方のタイプのキーワードが選択されている場合、
+        // スペース区切り部分とカンマ区切り部分をスペース一つで連結する
+        textToCopy = spacePart + ' ' + commaPart;
+    } else if (spacePart) {
+        textToCopy = spacePart;
+    } else if (commaPart) {
+        textToCopy = commaPart;
+        // commaPart は "単語,単語," のように、最後に選択されたカンマ付きキーワードのカンマで終わる。
+        // HTML の .comma-section の表示上も各行の最後はカンマで終わっているため、これで一貫性がある。
+    }
 
     try {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(textToCopy);
         showFeedback('コピーしました！');
     } catch (e) {
         console.error('コピーエラー:', e);
-        fallbackCopy(text);
+        fallbackCopy(textToCopy);
     }
 });
 
@@ -87,10 +80,17 @@ document.getElementById('bulkCopy').addEventListener('click', async () => {
 function showFeedback(msg, isError = false) {
     feedback.textContent = msg;
     feedback.style.background = isError ? '#c00' : '#333';
-    feedback.classList.add('show'); // CSSでのopacity制御のためクラス変更
+    feedback.style.opacity = '1';
 
+    // 2.5秒後に透明化
     setTimeout(() => {
-        feedback.classList.remove('show');
+        feedback.style.opacity = '0';
+
+        // 透明化後、さらに0.5秒後にテキストやスタイルをリセット
+        setTimeout(() => {
+            feedback.textContent = '';
+            feedback.style.background = '#333'; // デフォルト色に戻す（必要なら）
+        }, 500);
     }, 2500);
 }
 

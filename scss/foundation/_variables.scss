@@ -1,0 +1,66 @@
+// Colors
+$primary-color: #4a90e2;
+$primary-color-dark: #357abd;
+$text-color-light: white;
+
+$background-color-body: #f5f5f5;
+$background-color-container: white;
+$background-color-keyword: #f0f8ff;
+$background-color-keyword-hover: #e0f0ff;
+
+$border-color-light: #ddd;
+$border-color-primary-dark: #357abd; // for selected keyword
+
+$feedback-error-bg: #c00;
+$feedback-default-bg: #333;
+
+// Typography
+$font-family-base: 'Helvetica Neue', Arial, sans-serif;
+$line-height-base: 1.6;
+$font-size-h1: 24px;
+
+// Spacing
+$spacing-unit: 4px;
+
+$padding-body: 20px;
+$padding-container: 20px;
+$padding-keyword: 6px 12px;
+$padding-category-label: 6px 10px;
+$padding-control-panel: 15px;
+$padding-feedback: 6px 12px;
+$padding-h1-bottom: 10px;
+$padding-keywords-wrapper: 5px;
+
+
+$margin-keyword: $spacing-unit;
+$margin-bottom-category-item: $spacing-unit * 2.5;
+$margin-bottom-comma-row: $spacing-unit * 1.25;
+$margin-right-selection-info: 15px;
+$margin-left-feedback: 15px;
+$margin-top-h1: 30px;
+$margin-bottom-category-section: 30px;
+$margin-top-comma-section: 15px;
+
+
+// Borders
+$border-radius-base: 3px;
+$border-radius-container: 5px;
+$border-radius-control-panel: 8px;
+$border-radius-feedback: $border-radius-base + 1px;
+$border-radius-button: $border-radius-base + 1px;
+
+$border-category-item: 5px solid $primary-color;
+$border-h1: 1px solid $border-color-light;
+$border-keyword: 1px solid $border-color-light;
+
+// Shadows
+$box-shadow-container: 0 2px 5px rgba(0,0,0,0.1);
+$box-shadow-control-panel: 0 4px 6px rgba(0,0,0,0.1);
+
+// Transitions
+$transition-duration-base: 0.3s;
+$transition-duration-feedback: 0.4s;
+$transition-timing-function-base: ease;
+
+// Z-index
+$z-index-control-panel: 1000;

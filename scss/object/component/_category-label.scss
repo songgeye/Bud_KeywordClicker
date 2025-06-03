@@ -1,0 +1,9 @@
+@use '../../../foundation/variables' as var;
+
+.category-label {
+  background-color: var.$primary-color;
+  color: var.$text-color-light;
+  padding: var.$padding-category-label;
+  display: inline-block;
+  border-radius: 0 var.$border-radius-base var.$border-radius-base 0;
+}

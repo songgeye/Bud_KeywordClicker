@@ -1,0 +1,15 @@
+@use '../../../foundation/variables' as var;
+
+.copy-button {
+  background: var.$primary-color;
+  color: var.$text-color-light;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var.$border-radius-button;
+  cursor: pointer;
+  transition: background var.$transition-duration-base;
+
+  &:hover {
+    background: var.$primary-color-dark;
+  }
+}

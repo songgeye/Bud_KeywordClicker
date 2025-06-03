@@ -1,0 +1,16 @@
+@use '../../../foundation/variables' as var;
+
+.control-panel {
+  position: fixed;
+  bottom: var.$padding-body;
+  right: var.$padding-body;
+  background: var.$background-color-container;
+  padding: var.$padding-control-panel;
+  border-radius: var.$border-radius-control-panel;
+  box-shadow: var.$box-shadow-control-panel;
+  z-index: var.$z-index-control-panel;
+  display: flex;
+  align-items: center;
+  transition: height var.$transition-duration-base var.$transition-timing-function-base; 
+  height: auto;
+}

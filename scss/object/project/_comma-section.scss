@@ -1,0 +1,17 @@
+@use '../../../foundation/variables' as var;
+
+.comma-section {
+  margin-top: var.$margin-top-comma-section;
+
+  .comma-row {
+    margin-bottom: var.$margin-bottom-comma-row;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .comma {
+    margin-right: 2px;
+    vertical-align: bottom; 
+    line-height: 2em;
+  }
+}

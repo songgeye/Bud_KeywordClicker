@@ -1,0 +1,24 @@
+@use '../../../foundation/variables' as var;
+
+.keyword,
+.keyword-comma {
+  display: inline-block;
+  background-color: var.$background-color-keyword;
+  padding: var.$padding-keyword;
+  margin: var.$margin-keyword;
+  border-radius: var.$border-radius-base;
+  cursor: pointer;
+  border: var.$border-keyword;
+  transition: background-color var.$transition-duration-base, color var.$transition-duration-base;
+  user-select: none;
+
+  &:hover {
+    background-color: var.$background-color-keyword-hover;
+  }
+
+  &.selected {
+    background-color: var.$primary-color;
+    color: var.$text-color-light;
+    border-color: var.$border-color-primary-dark;
+  }
+}

@@ -1,0 +1,21 @@
+@use '../../../foundation/variables' as var;
+
+#feedback {
+  margin-left: var.$margin-left-feedback;
+  padding: var.$padding-feedback;
+  border-radius: var.$border-radius-feedback;
+  opacity: 0;
+  transition: opacity var.$transition-duration-feedback, margin var.$transition-duration-feedback;
+  background-color: var.$feedback-default-bg;
+  color: var.$text-color-light;
+  flex-grow: 1;
+  text-align: center;
+  margin-right: -var.$margin-left-feedback; 
+  white-space: nowrap;
+  overflow: hidden;
+
+  &.show {
+    opacity: 1;
+    margin-right: var.$margin-left-feedback;
+  }
+}

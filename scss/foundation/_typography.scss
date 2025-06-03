@@ -1,0 +1,8 @@
+@use 'variables' as var; // _variables.scss と同じディレクトリ内
+
+h1 {
+  border-bottom: var.$border-h1;
+  padding-bottom: var.$padding-h1-bottom;
+  margin-top: var.$margin-top-h1;
+  font-size: var.$font-size-h1;
+}

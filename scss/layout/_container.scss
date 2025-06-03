@@ -1,0 +1,10 @@
+@use '../foundation/variables' as var;
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: var.$background-color-container;
+  padding: var.$padding-container;
+  border-radius: var.$border-radius-container;
+  box-shadow: var.$box-shadow-container;
+}

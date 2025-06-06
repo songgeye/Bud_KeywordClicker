@@ -1,0 +1,137 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-top: 30px;
+  font-size: 24px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.copy-button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.copy-button:hover {
+  background: #357abd;
+}
+
+.category-label {
+  background-color: #4a90e2;
+  color: white;
+  padding: 6px 10px;
+  display: inline-block;
+  border-radius: 0 3px 3px 0;
+}
+
+#feedback {
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.4s, margin 0.4s;
+  background-color: #333;
+  color: white;
+  flex-grow: 1;
+  text-align: center;
+  margin-right: -15px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#feedback.show {
+  opacity: 1;
+  margin-right: 15px;
+}
+
+.keyword,
+.keyword-comma {
+  display: inline-block;
+  background-color: #f0f8ff;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.keyword:hover,
+.keyword-comma:hover {
+  background-color: #e0f0ff;
+}
+.keyword.selected,
+.keyword-comma.selected {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #357abd;
+}
+
+.selection-info {
+  margin-right: 15px;
+}
+
+.category-section {
+  margin-bottom: 30px;
+}
+.category-section .category-item {
+  position: relative;
+  border-left: 5px solid #4a90e2;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+.category-section .category-item .keywords-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 0 5px 5px;
+}
+
+.comma-section {
+  margin-top: 15px;
+}
+.comma-section .comma-row {
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.comma-section .comma {
+  margin-right: 2px;
+  vertical-align: bottom;
+  line-height: 2em;
+}
+
+.control-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: height 0.3s ease;
+  height: auto;
+}
+/*# sourceMappingURL=style.css.map */

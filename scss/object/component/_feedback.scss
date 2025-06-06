@@ -1,4 +1,4 @@
-@use '../../../foundation/variables' as var;
+@use '../../foundation/variables' as var;
 
 #feedback {
   margin-left: var.$margin-left-feedback;
@@ -10,7 +10,7 @@
   color: var.$text-color-light;
   flex-grow: 1;
   text-align: center;
-  margin-right: -var.$margin-left-feedback; 
+  margin-right: -(var.$margin-left-feedback); 
   white-space: nowrap;
   overflow: hidden;
 

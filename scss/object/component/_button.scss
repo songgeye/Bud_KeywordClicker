@@ -1,4 +1,5 @@
 @use '../../foundation/variables' as var;
+@use '../foundation/mixins' as mixin; // mixinの読み込み
 
 .copy-button {
   background: var.$primary-color;
@@ -8,8 +9,15 @@
   border-radius: var.$border-radius-button;
   cursor: pointer;
   transition: background var.$transition-duration-base;
+  font-size: 16px; // デスクトップでの基準フォントサイズ
 
   &:hover {
     background: var.$primary-color-dark;
+  }
+
+  // 画面幅が768px以下の場合に適用
+  @include mixin.media-query(var.$breakpoint-md) {
+    font-size: 14px;      // フォントを小さくする
+    padding: 6px 12px;    // 余白を狭くする
   }
 }

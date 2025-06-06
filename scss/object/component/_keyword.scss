@@ -1,4 +1,5 @@
 @use '../../foundation/variables' as var;
+@use '../../foundation/mixins' as mixin; // mixinの読み込み
 
 .keyword,
 .keyword-comma {
@@ -11,6 +12,7 @@
   border: var.$border-keyword;
   transition: background-color var.$transition-duration-base, color var.$transition-duration-base;
   user-select: none;
+  font-size: 16px; // デスクトップでの基準フォントサイズ
 
   &:hover {
     background-color: var.$background-color-keyword-hover;
@@ -20,5 +22,12 @@
     background-color: var.$primary-color;
     color: var.$text-color-light;
     border-color: var.$border-color-primary-dark;
+  }
+
+  // 画面幅が768px以下の場合に適用
+  @include mixin.media-query(var.$breakpoint-md) {
+    font-size: 14px;      // フォントを小さくする
+    padding: 4px 8px;     // 余白を狭くする
+    margin: 3px;          // マージンも少し狭くする
   }
 }

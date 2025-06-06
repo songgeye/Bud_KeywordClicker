@@ -1,5 +1,5 @@
 @use '../../foundation/variables' as var;
-@use '../foundation/mixins' as mixin; // mixinの読み込み
+@use '../../foundation/mixins' as mixin; // mixinの読み込み
 
 .category-label {
   background-color: var.$primary-color;

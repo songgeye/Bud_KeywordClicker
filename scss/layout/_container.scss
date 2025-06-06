@@ -9,8 +9,18 @@
   border-radius: var.$border-radius-container;
   box-shadow: var.$box-shadow-container;
 
+  // デスクトップ表示での余白設定
+  // コントロールパネルにコンテンツが隠れないよう、下部に多めの余白(90px)を確保
+  padding: var.$padding-container; // 上左右に20pxの余白
+  padding-bottom: 90px;           // 下部の余白を90pxで上書き
+
   // 画面幅が768px以下の場合に適用
   @include mixin.media-query(var.$breakpoint-md) {
-    padding: 15px; // コンテナの余白を少し狭くする
+    // スマートフォン表示での余白設定
+    // 同様に、下部の余白を多めに確保する
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 100px; // スマートフォンでは下部余白をさらに少し増やす
   }
 }

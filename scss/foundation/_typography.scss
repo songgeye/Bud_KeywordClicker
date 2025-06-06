@@ -1,8 +1,15 @@
 @use 'variables' as var; // _variables.scss と同じディレクトリ内
+@use 'mixins' as mixin; // mixinの読み込み
 
 h1 {
   border-bottom: var.$border-h1;
   padding-bottom: var.$padding-h1-bottom;
   margin-top: var.$margin-top-h1;
   font-size: var.$font-size-h1;
+
+  // 画面幅が768px以下の場合に適用
+  @include mixin.media-query(var.$breakpoint-md) {
+    font-size: 20px; // h1のフォントサイズを少し小さくする
+    margin-top: 20px;
+  }
 }

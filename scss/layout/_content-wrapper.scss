@@ -1,0 +1,20 @@
+@use '../foundation/variables' as var;
+
+// .content-wrapperのスタイル
+.content-wrapper {
+
+  // 画面幅が769px以上の場合に適用 (ブレークポイントより1px大きい)
+  @media (min-width: #{var.$breakpoint-md + 1px}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // 2つのカラムを作成
+    gap: 20px 40px;                 // 行と列の間の余白
+  }
+
+  // .content-wrapper の直下にあるh1タグに適用
+  > h1 {
+    // 画面幅が769px以上の場合に適用
+    @media (min-width: #{var.$breakpoint-md + 1px}) {
+      grid-column: 1 / -1; // h1は見出しなので、2カラムをまたいで全幅表示にする
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@use '../../foundation/variables' as var;
+@use '../../foundation/mixins' as mixin; // mixinの読み込み
+
+.selection-info {
+  margin-right: var.$margin-right-selection-info;
+  font-size: 16px; // デスクトップでの基準フォントサイズ
+
+  // 画面幅が768px以下の場合に適用
+  @include mixin.media-query(var.$breakpoint-md) {
+    font-size: 14px; // フォントを小さくする
+  }
+}

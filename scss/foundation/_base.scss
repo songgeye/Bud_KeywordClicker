@@ -1,0 +1,15 @@
+@use 'variables' as var; // _variables.scss と同じディレクトリ内
+@use 'mixins' as mixin; // mixinの読み込み
+
+body {
+  font-family: var.$font-family-base;
+  line-height: var.$line-height-base;
+  margin: 0;
+  padding: var.$padding-body;
+  background-color: var.$background-color-body;
+
+  // 画面幅が768px以下の場合に適用
+  @include mixin.media-query(var.$breakpoint-md) {
+    padding: 10px; // bodyの余白を狭くする
+  }
+}

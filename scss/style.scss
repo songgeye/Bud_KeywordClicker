@@ -1,0 +1,15 @@
+// Main SCSS file using Dart Sass module system
+
+// Load Foundation layer (base styles, typography)
+// _variables.scss is @use'd directly by files that need its variables.
+@use 'foundation'; // Loads foundation/_index.scss -> _base.scss, _typography.scss
+
+// Load Layout layer
+@use 'layout';     // Loads layout/_index.scss -> _container.scss
+
+// Load Object layer
+// Components
+@use 'object/component'; // Loads object/component/_index.scss -> forwards all components
+
+// Projects
+@use 'object/project';   // Loads object/project/_index.scss -> forwards all project-specific styles
